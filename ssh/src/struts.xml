@@ -1,0 +1,23 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.custom.i18n.resources" value="resource"></constant>
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <package name="tutorial" extends="json-default">
+        <global-results>
+			<result>/WEB-INF/hello.jsp?${msg}</result>
+        </global-results>
+        <action name="HelloWorld" class="org.ssh.web.HelloWorld">
+            <result type="redirectAction">changelan</result>
+        </action>
+        <action name="changelan" class="org.ssh.web.ChangelanAction">
+            
+        </action>
+        <action name="toJson" class="org.ssh.web.ChangelanAction" method="toJson">
+            <result type="json" >
+                <param name="root">json</param>
+            </result>
+        </action>
+    </package>
+</struts>

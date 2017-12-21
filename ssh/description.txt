@@ -1,0 +1,3 @@
+spring+hibenate+struts2  框架的集成（带有jar包）
+有国际化操作相关原理
+ognl

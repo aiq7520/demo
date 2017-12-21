@@ -1,0 +1,21 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.norteksoft.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.norteksoft.app"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.norteksoft.app"
+    }
+  },
+  "dependent_plugins": {}
+}

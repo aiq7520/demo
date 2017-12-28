@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	   <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=s0ypx1NTMG1dCF1VHEl8byGY"></script>-->
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<!--<script type="text/javascript" src="js/bmap.js"></script>-->
+		<script type="text/javascript" src="js/china.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+      
+       
+       <script type="text/javascript">
+	   
+var myChart = echarts.init(document.getElementById("container"));
+
+
+var option = {
+    backgroundColor: '#404a59',
+    title: {
+        text: '全国主要城市空气质量',
+        subtext: 'data from PM25.in',
+        sublink: 'http://www.pm25.in',
+        left: 'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    tooltip : {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        y: 'bottom',
+        x:'right',
+        data:['pm2.5'],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+	
+ geo: {
+		type: 'map',  
+		//mapType: 'china',  
+        map: 'china',
+		center: [104.114129, 35.550339],
+		zoom:zooms[1],
+		roam: true,
+        label: {
+		  normal: {               
+				 show:false, //是否显示省份
+				//文本样式  
+                 textStyle: {  
+                    //文本字体颜色  
+                  color: '#fff'  
+                  }    
+            },
+            emphasis: {
+                show: true,//鼠标进入是否显示省份
+				//文本样式  
+                  textStyle: {  
+                  //文本字体颜色  
+                   color: '#fff'  
+                 } 
+            }
+        },
+        roam: true,
+        itemStyle: {
+            normal: {
+                areaColor: '#323c48',
+                borderColor: '#111'
+            },
+            emphasis: {
+                areaColor: '#2a333d'  
+            }
+        },
+		regions: [{//给特定的省份标颜色
+					name: '广东',
+				itemStyle: {
+						normal: {
+							areaColor: '#323c48',
+							color: 'red'
+				}
+				}
+				}]
+    },
+    series : [
+        {
+			dimensions: ['东经', '北纬', '车辆总数'],
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: convertData(data.sort(function (a, b) {//排序
+                return b.value - a.value;
+            }).slice(0,3)),
+            symbolSize: function (val) {
+                return 10;
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: true
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: 'red',
+                    shadowBlur: 5,
+                    shadowColor: 'black'
+                }
+            },
+ 
+        }
+    ]
+}
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+
+myChart.on('click', function (parmas) {
+		//console.log(parmas)
+		var index = province.contains(parmas.name);
+		if(index){
+			var i = zooms[0]==zooms.length-1?(zooms[0]=1):++zooms[0];
+			option.geo.zoom=zooms[i];//放大地图
+			option.geo.center=coordinates[index];//中心坐标
+			//显示具体信息
+			if(i>1){
+				option.series[1]=seriesData;
+			}else{
+				 option.series[1]=null;
+			}
+			console.log(myChart.getOption().series);
+			console.log(i);
+			myChart.setOption(option);
+		}
+});
+
+       </script>
+   </body>
+</html>

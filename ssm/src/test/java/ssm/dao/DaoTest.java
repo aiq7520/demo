@@ -1,11 +1,14 @@
 package ssm.dao;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import ssm.entity.Car;
 import ssm.entity.Department;
 import ssm.entity.Emp;
 import ssm.service.Service;
@@ -64,4 +67,21 @@ public class DaoTest {
 			empService.add(d2);
 			empService.add(d3);
 	}
+	
+	@Test//创建Car
+	public void testCar(){
+		Car c1 = new Car("1C4RJFCG1FC900865","WKJP7424H","4斑马黑");
+		Car c2 = new Car("1C4RJFCG1FC900863","WKJP7423H","3斑马黑");
+		Car c3 = new Car("1C4RJFCG1FC900862","WKJP7422H","2斑马黑");
+		Car c4 = new Car("1C4RJFCG1FC900861","WKJP7421H","1斑马黑");
+//		empService.add(c1);
+//		empService.add(c2);
+//		empService.add(c3);
+		//empService.add(c4);
+		List<?> cars = empDao.listObj(Car.class);
+		for (Object car : cars) {
+			System.out.println(car);
+		}
+	}
+	
 }

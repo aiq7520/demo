@@ -35,4 +35,8 @@ public class Service {
 	public List<Department> list() {
 		return dao.getDeptList();
 	}
+	//////
+	public <T> List<?>  listObj(Class<T> clazz){
+		return dao.listObj(clazz);
+	}
 }

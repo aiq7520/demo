@@ -126,22 +126,27 @@ if (option && typeof option === "object") {
 }
 
 myChart.on('click', function (parmas) {
-		//console.log(parmas)
 		var index = province.contains(parmas.name);
-		if(index){
+		if(index){//省会点击
 			var i = zooms[0]==zooms.length-1?(zooms[0]=1):++zooms[0];
 			option.geo.zoom=zooms[i];//放大地图
 			option.geo.center=coordinates[index];//中心坐标
 			//显示具体信息
 			if(i>1){
-				option.series[1]=seriesData;
-			}else{
-				 option.series[1]=null;
-			}
-			console.log(myChart.getOption().series);
-			console.log(i);
-			myChart.setOption(option);
+			seriesData.symbolSize = function(val){//将点跟随地图一起变大
+				return 15 * (i/2)
+			};
+			option.series[1]=seriesData;
+			}else
+				 option.series.splice(1,1);//移除数组元素
+			myChart.setOption(option, true);
+			return ;
 		}
+		var index = storages.contains(parmas.name);
+		if(index){//仓库点击
+			alert("进入"+parmas.name+"仓库")
+			return ;
+		}    
 });
 
        </script>

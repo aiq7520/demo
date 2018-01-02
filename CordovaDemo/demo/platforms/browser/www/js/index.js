@@ -53,7 +53,6 @@ $(function(){
         data:{'name':$("#name").val(),'pwd':$("#pwd").val()},
         dataType: 'text',
         success:function(result){
-            //result = eval('(' + result + ')'); 
                $("body").html(result);
         }
     });

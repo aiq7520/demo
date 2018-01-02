@@ -14,6 +14,6 @@ public class NotVeryUsefulAspect {
 	
 	@Before("serviceMethod()")
 	public void before(){
-		System.out.println("«∞÷√");
+		System.out.println("≤‚ ‘ aspect «∞÷√");
 	}
 }

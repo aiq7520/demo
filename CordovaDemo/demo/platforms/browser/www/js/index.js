@@ -53,6 +53,10 @@ $(function(){
         data:{'name':$("#name").val(),'pwd':$("#pwd").val()},
         dataType: 'text',
         success:function(result){
+            if(result=="error"){
+                $("#msg").html("登录名或密码不正确")
+                return ;
+            }
                $("body").html(result);
         }
     });

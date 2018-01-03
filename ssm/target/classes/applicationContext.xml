@@ -50,6 +50,7 @@
 	<context:component-scan base-package="ssm.dao"></context:component-scan>
 	<context:component-scan base-package="ssm.service"></context:component-scan>
 	<context:component-scan base-package="ssm.demo"></context:component-scan>
+	<context:component-scan base-package="ssm.webservice"></context:component-scan>
 
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
 	    <property name="dataSource" ref="dataSource" />

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ssm.entity.Car;
 import ssm.entity.Emp;
 import ssm.service.Service;
+import ssm.webservice.client.CordovaWebService;
+import ssm.webservice.client.CordovaWebServiceImplService;
+import ssm.webservice.client.Exception_Exception;
 
 @Controller
 @RequestMapping(value="/CordovaDemo",produces="text/html;charset=UTF-8")
@@ -32,14 +35,16 @@ public class CordovaWeb {
 	
 	//Á÷³Ì²¿Êð
 		@RequestMapping("hello1")
-		public String hello1(String name ,String pwd,Model model,HttpServletResponse response) throws IOException{
-			Emp user = service.login(name,pwd);
-			if(user==null){
+		public String hello1(String name ,String pwd,Model model,HttpServletResponse response) throws IOException, Exception_Exception{
+			CordovaWebService cordovaWebServiceImplPort = new CordovaWebServiceImplService().getCordovaWebServiceImplPort();
+			String falg = cordovaWebServiceImplPort.cordovaAndiroLogin(name,pwd);
+			if(falg.equals("false")){
 				response.getOutputStream().print("error");
 				return null;
 			}
-			model.addAttribute("name", name);
-			model.addAttribute("pwd", pwd);
+			Emp user = service.login(name,pwd);
+			model.addAttribute("user", user);
+			model.addAttribute("falg", falg);
 			//model.addAttribute("path", "http://192.168.1.152:8081/ssm/resources/cordova");
 			List<?> list = service.listObj(Car.class);
 			model.addAttribute("list", list);

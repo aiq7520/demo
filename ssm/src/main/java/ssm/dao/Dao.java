@@ -56,7 +56,6 @@ public class Dao  {
 	
 	public List<? extends Object> listObj(Class<?> clazz){
 		String hql ="from "+ clazz.getName();
-		System.out.println(hql);
 		return hibernateTemplate.find(hql);
 	}
 }

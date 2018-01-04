@@ -1,0 +1,10 @@
+
+ssh/.classpath
+*.class
+*/.classpath
+ssm/target/*
+*/target/*
+ssm/.classpath
+ssm/.settings/org.eclipse.jdt.core.prefs
+ssm/target/classes/META-INF/maven/ssm/ssm/pom.properties
+ssm/target/classes/ssm/dao/Dao.class

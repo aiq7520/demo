@@ -9,3 +9,7 @@ ssm/target/*
 ssm/.classpath
 ssm/.settings/org.eclipse.jdt.core.prefs
 /ssm/target/
+/CordovaDemo/demo/node_modules
+/CordovaDemo/demo/platforms
+/CordovaDemo/demo/platforms
+/CordovaDemo/

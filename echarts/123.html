@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #FAFAFA;
+				font: 12pt "Tahoma";
+			}
+			
+			* {
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+			}
+			
+			.page {
+				width: 21cm;
+				min-height: 29.7cm;
+				padding: 2cm;
+				margin: 1cm auto;
+				border: 1px #D3D3D3 solid;
+				border-radius: 5px;
+				background: white;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+			}
+			
+			.subpage {
+				padding: 1cm;
+				border: 5px red solid;
+				height: 256mm;
+				outline: 2cm #FFEAEA solid;
+			}
+			
+			@page {
+				size: A4;
+				margin: 0;
+			}
+			
+			@media print {
+				.page {
+					margin: 0;
+					border: initial;
+					border-radius: initial;
+					width: initial;
+					min-height: initial;
+					box-shadow: initial;
+					background: initial;
+					page-break-after: always;
+				}
+			}
+			
+			.lis{
+				position:relative ;
+				width:80%;
+				margin-top: 10px;
+			}
+			.lis::after{
+				content:"";
+				clear:both;
+				display: block;
+			}
+			.fl-lt{
+				float:left;
+			}
+			.fl-rt{
+				width: 107px;
+				float:right;
+			}
+			.num{
+				letter-spacing: 2px;
+			}
+			.nextnum{
+				margin-bottom: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="printShuoming" style="color:#F00;margin-top: 10px;margin-left: 10px;display: none">
+			注意有可能执行时，会出现没有效果的错误，这时原因是可能你的浏览器限制了active对象的创建，只要取消限制就好了，取消方法如下：<br> 打开你的ie浏览器internet选项—— 安全—— 自定义级别—— 把对没有标记为安全的activex控件进行初始化和脚本运行 设置为启用</div>
+		<center></center>
+		<div class="book">
+			<div class="page">
+				<div class="subpage">
+					<div id="context" style="padding: 250px 50px">
+						<div class="lis">
+							<span >周志伟</span>
+							<div class="fl-rt">010-82169505</div>
+						</div>
+						<div class="lis">中国进口汽车贸易有限公司</div>
+						<div class="lis">
+							北京市海淀区中关村南三街中科资源大厦北楼8层
+						</div>
+						<div class="lis nextnum">
+							<div class="fl-rt num">100048</div>
+						</div>
+						
+						<div class="lis">
+							<span style="width:140px;">张靓</span>
+							<!--单证/票据接收人  -->
+							<div class="fl-rt">13851954367</div>
+						</div>
+						<div class="lis">大搜车-福特</div>
+						<!--所选车辆对应的经销商名称  -->
+						<div class="lis">南京市江北新区浦珠北路159号</div>
+						<!--单证/票据邮寄地址 -->
+						<div class="lis">
+							<span style="">浙江(杭州)</span>
+							<div class="fl-rt num">210031</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page">
+				<div class="subpage">
+					<div id="context" style="padding: 250px 50px">
+						<div class="lis">
+							<span style="">朱芮</span>
+							<div class="fl-rt">010-82362570</div>
+						</div>
+						<div class="lis">中国进口汽车贸易有限公司</div>
+						<div class="lis">
+							北京市海淀区中关村南三街中科资源大厦北楼8层
+						</div>
+						<div class="lis nextnum">
+							<div class="fl-rt num">100048</div>
+						</div>
+						
+						<div class="lis">
+							<span style="width:140px;">李四</span>
+							<!--单证/票据接收人  -->
+							<div class="fl-rt">021-82156958</div>
+						</div>
+						<div class="lis">大搜车-比亚迪</div>
+						<!--所选车辆对应的经销商名称  -->
+						<div class="lis">杭州市大搜车</div>
+						<!--单证/票据邮寄地址 -->
+						<div class="lis">
+							<span style="">浙江(杭州)</span>
+							<div class="fl-rt num">100190</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

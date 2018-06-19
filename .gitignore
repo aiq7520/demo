@@ -1,17 +1,14 @@
-
-ssh/.classpath
 *.class
-.class
-*/.classpath
-ssm/target/*
 */target/*
 /target/
-ssm/.classpath
-ssm/.settings/org.eclipse.jdt.core.prefs
-/ssm/target/
-/CordovaDemo/demo/node_modules
-/CordovaDemo/demo/platforms
-/CordovaDemo/demo/platforms
+*.classpath
 /CordovaDemo/
-/CordovaDemo/*
-*/CordovaDemo/*
+*/.settings
+!/CordovaDemo/demo/www
+!/CordovaDemo/hello/www
+
+#/target/ ：过滤文件设置，表示过滤这个文件夹#
+#*.mdb  ，*.ldb  ，*.sln 表示过滤某种类型的文件#
+#/mtk/do.c ，/mtk/if.h  表示指定过滤某个文件下具体文件#
+#!*.c , !/dir/subdir/     !开头表示不过滤#
+#*.[oa]    支持通配符：过滤repo中所有以.o或者.a为扩展名的文件#

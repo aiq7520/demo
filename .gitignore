@@ -3,6 +3,8 @@
 /target/
 *.classpath
 /CordovaDemo/
+*/CordovaDemo/*
+/CordovaDemo/*
 */.settings
 !/CordovaDemo/demo/www
 !/CordovaDemo/hello/www

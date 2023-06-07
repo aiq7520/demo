@@ -8,5 +8,6 @@
 */.settings
 !/CordovaDemo/demo/www
 !/CordovaDemo/hello/www
+package-lock.json
 
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+</head>
+<body>
+	<div id="main" style="height:750px;width: 100%"></div>
+</body>
+</html>
+
+
+
+
+<script type="text/javascript">
+ // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var data = [];
+        var dataCount = 10;
+        var startTime = +new Date('2023-03-01 09:00:00');
+        var categories = ['2023-03-01', '2023-03-02', '2023-03-03'];
+        var types = [
+        { name: '吃饭', color: '#7b9ce1' },
+        { name: '睡觉', color: '#bd6d6c' },
+        { name: '学习', color: '#75d874' },
+        { name: '摸鱼', color: '#e0bc78' },
+        { name: '贤者时间', color: '#dc77dc' },
+        { name: '开黑', color: '#72b362' }
+        ];
+categories.forEach(function (category, index) {
+  var baseTime = startTime;
+  for (var i = 0; i < dataCount; i++) {
+    var typeItem = types[Math.round(Math.random() * (types.length - 1))];
+    var duration = Math.round(Math.random() * 10000 * 1000);
+    data.push({
+      name: typeItem.name,
+      value: [index, baseTime, (baseTime += duration), duration],
+      itemStyle: {
+        normal: {
+          color: typeItem.color
+        }
+      }
+    });
+    baseTime += Math.round(Math.random() * 2000);
+  }
+})
+function renderItem(params, api) {
+  var categoryIndex = api.value(0);
+  var start = api.coord([api.value(1), categoryIndex]);
+  var end = api.coord([api.value(2), categoryIndex]);
+  var height = api.size([0, 1])[1] * 0.6;
+  var rectShape = echarts.graphic.clipRectByRect(
+    {
+      x: start[0],
+      y: start[1] - height / 2,
+      width: end[0] - start[0],
+      height: height
+    },
+    {
+      x: params.coordSys.x,
+      y: params.coordSys.y,
+      width: params.coordSys.width,
+      height: params.coordSys.height
+    }
+  );
+  return (
+    rectShape && {
+      type: 'rect',
+      transition: ['shape'],
+      shape: rectShape,
+      style: api.style()
+    }
+  );
+}
+function formate(val) {
+  let h = new Date(val).getHours();
+  let m = new Date(val).getMinutes();
+  let s = new Date(val).getSeconds();
+  return h + ':' + m + ':' + s;
+}
+function getDuration(val) {
+  let temp = Math.ceil(val / 1000);
+  let minutes = Math.ceil(temp / 60);
+  let seconds = temp % 60;
+  return minutes + '分钟' + seconds + '秒';
+}
+option = {
+  tooltip: {
+    formatter: function (params) {
+      return params.marker + params.name + '<br>'
+      + '开始 ' + formate(params.value[1]) + '<br>'
+      + '结束 ' + formate(params.value[2]) + '<br>'
+      + '持续 ' + getDuration(params.value[3]);
+    }
+  },
+  dataZoom: [
+    {
+      type: 'slider',
+      filterMode: 'weakFilter',
+      showDataShadow: false,
+      top: 400,
+      labelFormatter: ''
+    },
+    {
+      type: 'inside',
+      filterMode: 'weakFilter'
+    }
+  ],
+  grid: {
+    height: 300
+  },
+  xAxis: {
+    min: startTime,
+    scale: true,
+    axisLabel: {
+      formatter: function (val) {
+        let h = new Date(val).getHours();
+        let m = new Date(val).getMinutes();
+        let s = new Date(val).getSeconds();
+        return h + ':' + m + ':' + s;
+      }
+    }
+  },
+  yAxis: {
+    data: categories
+  },
+  series: [
+    {
+      type: 'custom',
+      renderItem: renderItem,
+      itemStyle: {
+        opacity: 0.8
+      },
+      encode: {
+        x: [1, 2],
+        y: 0
+      },
+      data: data
+    }
+  ]
+}
+        // 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
